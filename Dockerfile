@@ -45,56 +45,25 @@ RUN mkdir /ipython && \
 #NumPy v1.7.1 is required for Numba
 RUN pip install numpy==1.7.1
 
-#Pandas
-RUN pip install pandas
-
 #Optional
 RUN pip install cython
 RUN pip install jinja2 pyzmq tornado
-RUN pip install numexpr bottleneck scipy pygments 
+RUN pip install scipy 
 RUN apt-get install pkg-config
 RUN pip install matplotlib
-RUN pip install sympy pymc
-RUN pip install patsy
-RUN pip install statsmodels
-RUN pip install beautifulsoup4 html5lib
+RUN pip install sympy 
+
+# Mercurial
+RUN pip install mercurial python-hglib
 
 #Pattern
 RUN pip install --allow-external pattern
 
-#NLTK
-RUN pip install pyyaml nltk
-
-#Networkx
-RUN pip install networkx
-
-#LLVM and Numba
+#Install yt
 RUN cd /tmp && \
-    wget http://llvm.org/releases/3.2/llvm-3.2.src.tar.gz && \
-    tar zxvf llvm-3.2.src.tar.gz && \
-    cd llvm-3.2.src && \
-    ./configure --enable-optimized && \
-    REQUIRES_RTTI=1 make install && \
-    pip install llvmpy && \
-    pip install llvmmath && \
-    pip install numba
+    hg clone -r stable http://bitbucket.org/yt_analysis/yt && \
+    cd yt && \
+    python2.7 setup.py install
 
-#Biopython
-RUN pip install biopython
-
-#Bokeh
-#RUN pip install requests bokeh
-
-#Install R 3+
-RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' > /etc/apt/sources.list.d/r.list
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-RUN apt-get update
-RUN apt-get install -y r-base
-#Rmagic
-RUN pip install rpy2
-
-#Vincent
-RUN pip install vincent
-
-#Add runit services
-ADD sv /etc/service 
+#ThingKing
+#RUN pip install requests thingking darksky_catalog
