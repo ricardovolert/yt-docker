@@ -62,5 +62,8 @@ RUN cd /tmp && \
     cd yt && \
     python2.7 setup.py install
 
+RUN apt-get install -y libhdf5-7 libhdf5-dev
+RUN pip install h5py
+
 #ThingKing
 #RUN pip install requests thingking darksky_catalog
