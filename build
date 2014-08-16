@@ -1,1 +1,1 @@
-docker build -t ipython .
+docker build -t yt_stable .
