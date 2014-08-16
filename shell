@@ -1,1 +1,1 @@
-docker run -v `pwd`:/ipython -p 49888:8888 --rm -i -t ipython /bin/bash
+docker run -v `pwd`/sv:/etc/service -v `pwd`:/ipython -p 49888:8888 --rm -i -t yt_stable /bin/bash
