@@ -4,7 +4,7 @@
 
 # At some point, more of this will be pushed into its own docker image
 
-FROM      ytproject/yt-base
+FROM      ytproject/yt-stable
 MAINTAINER Matthew Turk "matthewturk@gmail.com"
 
 RUN echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
