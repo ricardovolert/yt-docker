@@ -1,0 +1,5 @@
+ipython==1.2.1
+pyzmq==14.1.0
+tornado==3.2
+Jinja2==2.7.2
+readline==6.2.4.1
