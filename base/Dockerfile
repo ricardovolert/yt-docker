@@ -43,7 +43,7 @@ RUN pip install -U distribute
 RUN pip install numpy cython jinja2 pyzmq tornado
 
 #IPython
-RUN pip install ipython
+RUN pip install ipython[notebook]
 ENV IPYTHONDIR /ipython
 RUN mkdir /ipython && \
     ipython profile create nbserver

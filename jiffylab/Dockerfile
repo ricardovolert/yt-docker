@@ -4,11 +4,22 @@
 
 # At some point, more of this will be pushed into its own docker image
 
-FROM      ytproject/yt-stable
+FROM      ytproject/yt-devel:latest
 MAINTAINER Matthew Turk "matthewturk@gmail.com"
+RUN rm -rf /ipython
 
-RUN echo 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse' > /etc/apt/sources.list
 #
+RUN apt-get update -qq
+RUN apt-get install -y -q curl
+RUN apt-get install -y -q sudo
+RUN apt-get install -y -q python-dev
+RUN apt-get install -y -q python-pip
+RUN apt-get install -y -q git-core
+
+# gcc and make should be available from python-dev
+# RUN apt-get install -y -q gcc
+# RUN apt-get install -y -q make
+
 # add a user
 RUN useradd -D --shell=/bin/bash
 RUN useradd -m user
@@ -33,6 +44,9 @@ EXPOSE 4200
 RUN pip install supervisor
 ADD supervisor/supervisord.conf /etc/supervisord.conf
 
+RUN pip install ipython[notebook]
+RUN pip install ez_setup
+RUN pip install ipythonblocks
 ADD ./ipython-conf.tgz /home/user/
 RUN chown -R user /home/user/ipython-conf/
 ENV IPYTHONDIR /ipython-config/
