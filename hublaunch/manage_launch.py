@@ -3,6 +3,7 @@
 # script passed in.
 
 import os
+import sys
 import subprocess
 
 # Now let's set up our environment
@@ -22,3 +23,6 @@ if not os.path.exists("fuse"):
 p = subprocess.Popen(["irodsFs", "fuse"])
 p.communicate()
 assert(not p.returncode)
+
+os.chdir("fuse")
+os.execlp("python2.7", "", sys.argv[1])
